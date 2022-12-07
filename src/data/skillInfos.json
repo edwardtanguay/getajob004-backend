@@ -18,5 +18,10 @@
 		"name": "TypeScript",
 		"url": "https://onespace.pages.dev/techItems?id=35",
 		"description": "in larger applications, the preferred way to program in JavaScript"
+	},
+	"jest": {
+		"name": "Jest",
+		"url": "https://onespace.pages.dev/techItems?id=19",
+		"description": "a JavaScript testing framework like Mocha, but simpler"
 	}
 }

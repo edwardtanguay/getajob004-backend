@@ -1,6 +1,6 @@
 import fs from 'fs';
 import * as model from './model.js';
-import {RawJob, Job, Skill, nullObjectSkill} from './types.js';
+import { RawJob, Job, Skill, nullObjectSkill } from './types.js';
 
 
 const rawJobs: RawJob[] = JSON.parse(fs.readFileSync('./src/data/jobs.json', 'utf8'));
@@ -11,7 +11,7 @@ export const getJobs = () => {
 	rawJobs.forEach((rawJob: RawJob) => {
 		const job: Job = {
 			...rawJob,
-			skills: model.buildSkills(rawJob.skillList) 
+			skills: model.buildSkills(rawJob.skillList)
 		};
 		jobs.push(job);
 	})
@@ -20,14 +20,26 @@ export const getJobs = () => {
 
 export const buildSkills = (skillList: string) => {
 	const skills: Skill[] = [];
-	const skillIdCodes = skillList.split(',').map(m=>m.trim());
+	const skillIdCodes = skillList.split(',').map(m => m.trim());
 	skillIdCodes.forEach(skillIdCode => {
-		const skill: Skill = {
-			...nullObjectSkill,
-			idCode: skillIdCode
-		};
-		skills.push(skill);
-	})	
+		const _skill = skillInfos[skillIdCode];
+		console.log(skillIdCode);
+		console.log(_skill);
+		if (_skill === undefined) {
+			const skill: Skill = {
+				...nullObjectSkill,
+				idCode: skillIdCode
+			};
+			skills.push(skill);
+		} else {
+			console.log(_skill);
+			const skill: Skill = {
+				..._skill,
+				skillIdCode
+			}
+			skills.push(skill);
+		}
+	})
 	return skills;
 }
 
