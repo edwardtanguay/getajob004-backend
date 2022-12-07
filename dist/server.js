@@ -1,24 +1,17 @@
 import express from 'express';
-import fs from 'fs';
 import cors from 'cors';
+import * as model from './model.js';
 const app = express();
 app.use(cors());
 const port = 3011;
-const jobs = JSON.parse(fs.readFileSync('./src/data/jobs.json', 'utf8'));
 app.get('/', (req, res) => {
-    res.send('job site api');
+    res.send(model.getApiDocumentationHtml());
 });
 app.get('/jobs', (req, res) => {
-    res.json(jobs);
+    res.json(model.getJobs());
 });
 app.get('/todos', (req, res) => {
-    res.json(jobs.map((job) => {
-        return {
-            todo: job.todo,
-            company: job.company,
-            title: job.title
-        };
-    }));
+    res.json(model.getTodos());
 });
 app.listen(port, () => {
     console.log(`listening on http://localhost:${port}`);

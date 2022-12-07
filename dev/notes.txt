@@ -1,4 +1,8 @@
-- .. create route /todos
+- x create route /todos
+- x create model
+	- x refactor current app to MVC
+	- .. solve issue with Tim's file read (utf8?) 
+	- fix von Belal for the nodemon.json
 
 
 
