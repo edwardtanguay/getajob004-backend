@@ -11,6 +11,15 @@ app.get('/', (req, res) => {
 app.get('/jobs', (req, res) => {
     res.json(jobs);
 });
+app.get('/todos', (req, res) => {
+    res.json(jobs.map((job) => {
+        return {
+            todo: job.todo,
+            company: job.company,
+            title: job.title
+        };
+    }));
+});
 app.listen(port, () => {
     console.log(`listening on http://localhost:${port}`);
 });
